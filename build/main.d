@@ -1,4 +1,4 @@
-main.o: C:/Users/duckm/3DS-Storefront/source/main.cpp \
+main.o: C:/Users/duckm/3DS-Storefront-1/source/main.cpp \
  C:/devkitPro/libctru/include/3ds.h \
  C:/devkitPro/libctru/include/3ds/types.h \
  C:/devkitPro/libctru/include/3ds/result.h \
@@ -85,11 +85,11 @@ main.o: C:/Users/duckm/3DS-Storefront/source/main.cpp \
  C:/devkitPro/libctru/include/3ds/font.h \
  C:/devkitPro/libctru/include/3ds/gdbhio_dev.h \
  C:/devkitPro/libctru/include/3ds/3dslink.h \
- C:/Users/duckm/3DS-Storefront/source/DownloadFromURL.hpp \
- C:/Users/duckm/3DS-Storefront/source/input.hpp \
- C:/Users/duckm/3DS-Storefront/source/rw.hpp \
- C:/Users/duckm/3DS-Storefront/source/json.hpp \
- C:/Users/duckm/3DS-Storefront/source/print.hpp
+ C:/Users/duckm/3DS-Storefront-1/source/DownloadFromURL.hpp \
+ C:/Users/duckm/3DS-Storefront-1/source/input.hpp \
+ C:/Users/duckm/3DS-Storefront-1/source/rw.hpp \
+ C:/Users/duckm/3DS-Storefront-1/source/json.hpp \
+ C:/Users/duckm/3DS-Storefront-1/source/print.hpp
 C:/devkitPro/libctru/include/3ds.h:
 C:/devkitPro/libctru/include/3ds/types.h:
 C:/devkitPro/libctru/include/3ds/result.h:
@@ -176,8 +176,8 @@ C:/devkitPro/libctru/include/3ds/romfs.h:
 C:/devkitPro/libctru/include/3ds/font.h:
 C:/devkitPro/libctru/include/3ds/gdbhio_dev.h:
 C:/devkitPro/libctru/include/3ds/3dslink.h:
-C:/Users/duckm/3DS-Storefront/source/DownloadFromURL.hpp:
-C:/Users/duckm/3DS-Storefront/source/input.hpp:
-C:/Users/duckm/3DS-Storefront/source/rw.hpp:
-C:/Users/duckm/3DS-Storefront/source/json.hpp:
-C:/Users/duckm/3DS-Storefront/source/print.hpp:
+C:/Users/duckm/3DS-Storefront-1/source/DownloadFromURL.hpp:
+C:/Users/duckm/3DS-Storefront-1/source/input.hpp:
+C:/Users/duckm/3DS-Storefront-1/source/rw.hpp:
+C:/Users/duckm/3DS-Storefront-1/source/json.hpp:
+C:/Users/duckm/3DS-Storefront-1/source/print.hpp:
