@@ -15,7 +15,7 @@ int main(int argc, char** argv)
     consoleSelect(&topScreen);
     fsInit();
     httpcInit(0);
-    printf("Fetching storefront\...\n");
+    printf("Fetching storefront...\n");
     std::string store_url = readFile("/3ds/3DS-Storefront/store.url");
     if (!store_url.empty())
     {
@@ -48,7 +48,7 @@ int main(int argc, char** argv)
     }
     int selected = 0;
     std::string printString = "";
-    for (size_t i = 0; i < keys.size(); i++)
+    for (int i = 0; i < (int)keys.size(); i++)
     {
         if (i == selected)
         {
@@ -69,9 +69,12 @@ int main(int argc, char** argv)
         hidScanInput();
         if (hidKeysDown() & KEY_START) break;
         if (hidKeysDown() & KEY_DOWN){
-            selected = (selected + 1) % keys.size();
+            selected++;
+            if (selected >= (int)keys.size()){
+                selected = 0;
+            }
             std::string printString = "";
-            for (size_t i = 0; i < keys.size(); i++)
+            for (int i = 0; i < (int)keys.size(); i++)
             {
                 if (i == selected)
                 {
@@ -86,9 +89,12 @@ int main(int argc, char** argv)
             printf("%s", printString.c_str());
         }
         if (hidKeysDown() & KEY_UP){
-            selected = (selected - 1) % keys.size();
+            selected--;
+            if (selected < 0){
+                selected = keys.size() - 1;
+            }
             std::string printString = "";
-            for (size_t i = 0; i < keys.size(); i++)
+            for (int i = 0; i < (int)keys.size(); i++)
             {
                 if (i == selected)
                 {
