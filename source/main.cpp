@@ -4,7 +4,6 @@
 #include "input.hpp"
 #include "rw.hpp"
 #include "json.hpp"
-#include "print.hpp"
 using json = nlohmann::json;
 int main(int argc, char** argv)
 {
