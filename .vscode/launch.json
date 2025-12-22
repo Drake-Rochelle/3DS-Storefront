@@ -1,0 +1,28 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "3DS: Build & Run in Emu",
+      "type": "cppvsdbg", // cppdbg : C++ (GDB/LLDB)
+      "request": "launch",
+      "program": "C:\\Program Files\\citra-windows-msvc-20240927-608383e\\citra-qt.exe",
+      "args": [
+        "${workspaceFolderBasename}.3dsx"
+      ],
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "Make"
+    },
+    {
+      "name": "3dslink: Build & Run on Hardware",
+      "type": "cppvsdbg",
+      "request": "launch",
+      "program": "cmd.exe",
+      "args": [
+        "/c",
+        "3dslink -a 192.168.1.22 ${workspaceFolderBasename}.3dsx"
+      ],
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "Make"
+    }
+  ]
+}
