@@ -44,11 +44,11 @@ bool writeFile(const std::string& path, const std::string& data)
         std::string dir = path.substr(0, lastSlash);
         if (!dir.empty())
         {
-            FS_Archive sdmcArchive;
+            FS_Archive dirArchive;
             FS_Path sdmcPath = fsMakePath(PATH_EMPTY, "");
-            FSUSER_OpenArchive(&sdmcArchive, ARCHIVE_SDMC, sdmcPath);
-            ensureDir(sdmcArchive, dir);
-            FSUSER_CloseArchive(sdmcArchive);
+            FSUSER_OpenArchive(&dirArchive, ARCHIVE_SDMC, sdmcPath);
+            ensureDir(dirArchive, dir);
+            FSUSER_CloseArchive(dirArchive);
         }
     }
 
@@ -67,6 +67,8 @@ bool writeFile(const std::string& path, const std::string& data)
 
     if (R_FAILED(res))
         return false;
+
+    FSFILE_SetSize(file, 0);
 
     u32 bytesWritten = 0;
     res = FSFILE_Write(file, &bytesWritten, 0,

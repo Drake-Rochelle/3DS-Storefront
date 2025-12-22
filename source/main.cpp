@@ -10,14 +10,29 @@ int main(int argc, char** argv)
 {
     std::string defaultUrl = "https://drive.google.com/uc?export=download&id=1T5wBtKLsx759Vl1M2a_wrZg3xJbVqoGV";
     gfxInitDefault();
-    consoleInit(GFX_TOP, NULL);
+    PrintConsole topScreen, bottomScreen;
+    consoleInit(GFX_TOP, &topScreen);
+    consoleInit(GFX_BOTTOM, &bottomScreen);
+    consoleSelect(&topScreen);
     fsInit();
     httpcInit(0);
     printf("Fetching storefront\...\n");
     std::string store_url = readFile("/3ds/3DS-Storefront/store.url");
     if (!store_url.empty())
     {
-        downloadURL(store_url, "/3ds/3DS-Storefront", "storefront.json");
+        bool downloadSuccess = downloadURL(store_url, "/3ds/3DS-Storefront", "storefront.json");
+        if (!downloadSuccess)
+        {
+            consoleClear();
+            printf("Failed to fetch storefront from %s\nUsing previous storefront.\n", store_url.substr(20,store_url.size()).c_str());
+            while (aptMainLoop())
+            {
+                hidScanInput();
+                if (hidKeysDown()) break;
+                gspWaitForVBlank();
+            }
+            
+        }
     }
     else
     {
@@ -33,27 +48,74 @@ int main(int argc, char** argv)
         keys.push_back(el.key());
     }
     int selected = 0;
+    std::string printString = "";
+    for (size_t i = 0; i < keys.size(); i++)
+    {
+        if (i == selected)
+        {
+            printString += ">" + keys[i] + "\n";
+        }
+        else
+        {
+            printString += " " + keys[i] + "\n";
+        }
+    }
+    consoleClear();
+    printf("%s", printString.c_str());
+    consoleSelect(&bottomScreen);
+    printf("Use UP/DOWN to navigate.\nPress A to download.\nPress X to change storefront.\nPress START to exit.\n");
+    consoleSelect(&topScreen);
     while (aptMainLoop())
     {
-        consoleClear();
-        for (size_t i = 0; i < keys.size(); i++)
-        {
-            if (i == selected)
-            {
-                printf(">%s\n", keys[i].c_str());
-            }
-            else
-            {
-                printf(" %s\n", keys[i].c_str());
-            }
-        }
         hidScanInput();
         if (hidKeysDown() & KEY_START) break;
         if (hidKeysDown() & KEY_DOWN){
             selected = (selected + 1) % keys.size();
+            std::string printString = "";
+            for (size_t i = 0; i < keys.size(); i++)
+            {
+                if (i == selected)
+                {
+                    printString += ">" + keys[i] + "\n";
+                }
+                else
+                {
+                    printString += " " + keys[i] + "\n";
+                }
+            }
+            consoleClear();
+            printf("%s", printString.c_str());
         }
         if (hidKeysDown() & KEY_UP){
             selected = (selected - 1) % keys.size();
+            std::string printString = "";
+            for (size_t i = 0; i < keys.size(); i++)
+            {
+                if (i == selected)
+                {
+                    printString += ">" + keys[i] + "\n";
+                }
+                else
+                {
+                    printString += " " + keys[i] + "\n";
+                }
+            }
+            consoleClear();
+            printf("%s", printString.c_str());
+        }
+        if (hidKeysDown() & KEY_X)
+        {
+            std::string newUrl = getTextInput("Enter new store name:", 256);
+            if (!newUrl.empty())
+            {
+                std::string new_Url = "https://tinyurl.com/" + newUrl;
+                writeFile("/3ds/3DS-Storefront/store.url", new_Url);
+                consoleClear();
+                httpcExit();
+                gfxExit();
+                main(0, nullptr);
+                return 0;
+            }
         }
         if (hidKeysDown() & KEY_A){
             std::string url = storeJson[keys[selected]][0];
@@ -78,7 +140,6 @@ int main(int argc, char** argv)
                     if (hidKeysDown()) break;
                     gspWaitForVBlank();
                 }
-                
             }
         }
         gspWaitForVBlank();
