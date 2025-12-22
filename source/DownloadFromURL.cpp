@@ -22,7 +22,7 @@ bool downloadToBuffer(const std::string& url, std::vector<u8>& out, int redirect
     if (R_FAILED(res)) return false;
     if (status >= 300 && status < 400)
     {
-        char newUrl[1024] = {0};
+        char newUrl[1024*4] = {0};
         res = httpcGetResponseHeader(&ctx, "Location", newUrl, sizeof(newUrl));
         httpcCloseContext(&ctx);
 
@@ -92,6 +92,7 @@ bool downloadToSD(const std::string& url, const std::string& outPath)
     }
     u32 bytesWritten = 0;
     res = FSFILE_Write(fileHandle, &bytesWritten, 0,buffer.data(), buffer.size(),FS_WRITE_FLUSH);
+    FSFILE_SetSize(fileHandle, buffer.size());
     FSFILE_Close(fileHandle);
     return R_SUCCEEDED(res) && bytesWritten == buffer.size();
 }
