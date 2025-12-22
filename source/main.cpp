@@ -20,6 +20,7 @@ int main(int argc, char** argv)
     if (store_url.empty())
     {
         writeFile("/3ds/3DS-Storefront/store.url", defaultStore);
+        writeFile("/3ds/3DS-Storefront/prev_store.url", defaultStore);
         store_url = defaultStore;
     }
     printf("Loading...\n");
@@ -289,6 +290,9 @@ int main(int argc, char** argv)
                 std::string url = storeJson[keys[selected]][0];
                 std::string fileName = storeJson[keys[selected]][1];
                 consoleClear();
+                consoleSelect(&bottomScreen);
+                consoleClear();
+                consoleSelect(&topScreen);
                 printf("Downloading %s...\n", fileName.c_str());
                 std::string dir = storeJson[keys[selected]][2];
                 if (!fileName.empty()) {
@@ -313,6 +317,23 @@ int main(int argc, char** argv)
                         if (hidKeysDown()) break;
                         gspWaitForVBlank();
                     }
+                    std::string printString = "";
+                    for (int i = 0; i < (int)keys.size(); i++)
+                    {
+                        if (i == selected)
+                        {
+                            printString += ">" + keys[i] + "\n";
+                        }
+                        else
+                        {
+                            printString += " " + keys[i] + "\n";
+                        }
+                    }
+                    consoleClear();
+                    printf("%s", printString.c_str());
+                    consoleSelect(&bottomScreen);
+                    printf("Use UP/DOWN to navigate.\nPress A to download.\nPress X to change storefront.\nPress START to exit.\nPress SELECT to return to main storefront.\n");
+                    consoleSelect(&topScreen);
                 }
             }
         }
