@@ -36,7 +36,7 @@ Each line coresponds to one of the files you uploaded to google drive. Each "lin
 }
 ```
 
-Once the storefront.json file is filled out, go back to google drive and select "New>File Upload" and upload the storefront.json file. Once it's done uploading, get a link to the file with the instructions below. Optionally, you can put this link through tinyurl to make it easier to share. Then, the file at /3ds/3DS-Storefront/store.url in a text editor and replace the url there with your new url. Optionally, you may also share this new url with others and have them do the same.
+Once the storefront.json file is filled out, go back to google drive and select "New>File Upload" and upload the storefront.json file. Once it's done uploading, get a link to the file with the instructions below. Next, go to [this](https://tinyurl.com/) site and put in that link. The site will ask for an alias. This will be the name of your storefront. Once that tinyurl link is created, open 3DS Storefront and press X once the current storefront loads. Then, you can type in the name of your new storefront. Finally, reload the app. You can also share name of your storefront name with other poeple and they can use it.
 
 ### LINKS
 To get a link to a file for your storefront.json, right-click on the file in google drive and select "Share>Copy Link". THIS LINK WILL NOT WORK. Instead, put that link into [this](https://sites.google.com/site/gdocs2direct/) site. The link you get back is the one you must use in the storefront.json
