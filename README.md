@@ -48,7 +48,7 @@ To get a link to a file for your storefront.json, right-click on the file in goo
 ```
 {
 "name":["link","storefront"],
-"name":["link","file name","/directory"],
+"name":["link","storefront"],
 "name":["link","storefront"]
 ...
 }
@@ -59,7 +59,7 @@ The key difference from before is that we do not specefy a directory (as storefr
 ```
 {
 "name":["link","storefront"],
-"name":["link","storefront"],
+"name":["link","file name","/directory"],
 "name":["link","storefront"]
 ...
 }
