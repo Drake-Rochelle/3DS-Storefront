@@ -42,7 +42,7 @@ Once the storefront.json file is filled out, go back to google drive and select 
 ### LINKS
 To get a link to a file for your storefront.json, right-click on the file in google drive and select "Share>Copy Link". THIS LINK WILL NOT WORK. Instead, put that link into [this](https://sites.google.com/site/gdocs2direct/) site. The link you get back is the one you must use in the storefront.json
 
-### META-STOREFRONTS:
+### META-STOREFRONTS
 3DS Storefront V0.2 adds the ability to create a storefront that contains additional storefronts. This allows you to put all of your storefronts in one place where they are easy to access. To do this, create a new storefront.json file as above and put in this:
 
 ```
