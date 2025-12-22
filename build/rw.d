@@ -1,4 +1,4 @@
-rw.o: C:/Users/duckm/3DS-Storefront/source/rw.cpp \
+rw.o: C:/Users/duckm/3DS-Storefront-1/source/rw.cpp \
  C:/devkitPro/libctru/include/3ds.h \
  C:/devkitPro/libctru/include/3ds/types.h \
  C:/devkitPro/libctru/include/3ds/result.h \
@@ -85,7 +85,7 @@ rw.o: C:/Users/duckm/3DS-Storefront/source/rw.cpp \
  C:/devkitPro/libctru/include/3ds/font.h \
  C:/devkitPro/libctru/include/3ds/gdbhio_dev.h \
  C:/devkitPro/libctru/include/3ds/3dslink.h \
- C:/Users/duckm/3DS-Storefront/source/DownloadFromURL.hpp
+ C:/Users/duckm/3DS-Storefront-1/source/DownloadFromURL.hpp
 C:/devkitPro/libctru/include/3ds.h:
 C:/devkitPro/libctru/include/3ds/types.h:
 C:/devkitPro/libctru/include/3ds/result.h:
@@ -172,4 +172,4 @@ C:/devkitPro/libctru/include/3ds/romfs.h:
 C:/devkitPro/libctru/include/3ds/font.h:
 C:/devkitPro/libctru/include/3ds/gdbhio_dev.h:
 C:/devkitPro/libctru/include/3ds/3dslink.h:
-C:/Users/duckm/3DS-Storefront/source/DownloadFromURL.hpp:
+C:/Users/duckm/3DS-Storefront-1/source/DownloadFromURL.hpp:

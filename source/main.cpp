@@ -4,7 +4,6 @@
 #include "input.hpp"
 #include "rw.hpp"
 #include "json.hpp"
-#include "print.hpp"
 using json = nlohmann::json;
 int main(int argc, char** argv)
 {
@@ -13,7 +12,7 @@ int main(int argc, char** argv)
     consoleInit(GFX_TOP, NULL);
     fsInit();
     httpcInit(0);
-    printf("Fetching storefront\...\n");
+    printf("Fetching storefront...\n");
     std::string store_url = readFile("/3ds/3DS-Storefront/store.url");
     if (!store_url.empty())
     {
@@ -35,25 +34,48 @@ int main(int argc, char** argv)
     int selected = 0;
     while (aptMainLoop())
     {
-        consoleClear();
-        for (size_t i = 0; i < keys.size(); i++)
-        {
-            if (i == selected)
+        if (hidKeysDown() & KEY_START) break;
+        if (hidKeysDown() & KEY_X){
+            std::string newUrl = getTextInput("Enter Storefront Name", 256);
+            if (!newUrl.empty())
             {
-                printf(">%s\n", keys[i].c_str());
-            }
-            else
-            {
-                printf(" %s\n", keys[i].c_str());
+                writeFile("/3ds/3DS-Storefront/store.url", newUrl);
+                consoleClear();
+                main(argc, argv);
+                return 0;
             }
         }
-        hidScanInput();
-        if (hidKeysDown() & KEY_START) break;
         if (hidKeysDown() & KEY_DOWN){
             selected = (selected + 1) % keys.size();
+            consoleClear();
+            for (size_t i = 0; i < keys.size(); i++)
+            {
+                if (i == selected)
+                {
+                    printf(">%s\n", keys[i].c_str());
+                }
+                else
+                {
+                    printf(" %s\n", keys[i].c_str());
+                }
+            }
+            hidScanInput();
         }
         if (hidKeysDown() & KEY_UP){
             selected = (selected - 1) % keys.size();
+            consoleClear();
+            for (size_t i = 0; i < keys.size(); i++)
+            {
+                if (i == selected)
+                {
+                    printf(">%s\n", keys[i].c_str());
+                }
+                else
+                {
+                    printf(" %s\n", keys[i].c_str());
+                }
+            }
+            hidScanInput();
         }
         if (hidKeysDown() & KEY_A){
             std::string url = storeJson[keys[selected]][0];
@@ -78,7 +100,19 @@ int main(int argc, char** argv)
                     if (hidKeysDown()) break;
                     gspWaitForVBlank();
                 }
-                
+                consoleClear();
+                for (size_t i = 0; i < keys.size(); i++)
+                {
+                    if (i == selected)
+                    {
+                        printf(">%s\n", keys[i].c_str());
+                    }
+                    else
+                    {
+                        printf(" %s\n", keys[i].c_str());
+                    }
+                }
+                hidScanInput();
             }
         }
         gspWaitForVBlank();
