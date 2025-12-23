@@ -98,21 +98,21 @@ int main(int argc, char** argv)
         if (hidKeysDown() & KEY_R)
         {
             std::string saved_stores = readFile("/3ds/3DS-Storefront/saves.url");
-            consoleClear();
             std::vector<std::string> lines = split(saved_stores, '\n');
             std::unordered_map<std::string, std::string> save_map;
             std::vector<std::string> names;
-            for (int i = 0; i < (int)lines.size()-1; i++)
+            for (const std::string& line : lines)
             {
-                size_t colon_pos = lines[i].find(':');
+                size_t colon_pos = line.find(':');
                 if (colon_pos != std::string::npos)
                 {
-                    std::string name = lines[i].substr(0, colon_pos);
+                    std::string name = line.substr(0, colon_pos);
                     names.push_back(name);
-                    std::string url = lines[i].substr(colon_pos + 1);
+                    std::string url = line.substr(colon_pos + 1);
                     save_map[name] = url;
                 }
             }
+            consoleClear();
             int selected_save = 0;
             std::string printString = "";
             for (int i = 0; i < (int)names.size(); i++)
@@ -124,71 +124,6 @@ int main(int argc, char** argv)
                 else
                 {
                     printString += " " + names[i] + "\n";
-                }
-            }
-            consoleClear();
-            printf("%s\n", printString.c_str());
-            while (aptMainLoop())
-            {
-                hidScanInput();
-                if (hidKeysDown() & KEY_START)
-                {
-                    aptExit();
-                    svcExitProcess();
-                }
-                if (hidKeysDown() & KEY_DOWN){
-                    selected_save++;
-                    if (selected_save >= (int)names.size()){
-                        selected_save = 0;
-                    }
-                    std::string printString = "";
-                    for (int i = 0; i < (int)names.size(); i++)
-                    {
-                        if (i == selected_save)
-                        {
-                            printString += ">" + names[i] + "\n";
-                        }
-                        else
-                        {
-                            printString += " " + names[i] + "\n";
-                        }
-                    }
-                    consoleClear();
-                    printf("%s", printString.c_str());
-                }
-                if (hidKeysDown() & KEY_UP){
-                    selected_save--;
-                    if (selected_save < 0){
-                        selected_save = names.size() - 1;
-                    }
-                    std::string printString = "";
-                    for (int i = 0; i < (int)names.size(); i++)
-                    {
-                        if (i == selected_save)
-                        {
-                            printString += ">" + names[i] + "\n";
-                        }
-                        else
-                        {
-                            printString += " " + names[i] + "\n";
-                        }
-                    }
-                    consoleClear();
-                    printf("%s", printString.c_str());
-                }
-                if (hidKeysDown() & KEY_A){
-                    std::string selected_name = names[selected_save];
-                    std::string selected_url = save_map[selected_name];
-                    writeFile("/3ds/3DS-Storefront/store.url", selected_url);
-                    consoleClear();
-                    printf("Loading...\n");
-                    consoleSelect(&bottomScreen);
-                    consoleClear();
-                    consoleSelect(&topScreen);
-                    httpcExit();
-                    gfxExit();
-                    main(0, nullptr);
-                    return 0;
                 }
             }
         }

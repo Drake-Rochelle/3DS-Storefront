@@ -64,7 +64,6 @@ bool writeFile(const std::string& path, const std::string& data)
         FS_OPEN_WRITE | FS_OPEN_CREATE,
         0
     );
-
     if (R_FAILED(res))
         return false;
 
@@ -74,7 +73,7 @@ bool writeFile(const std::string& path, const std::string& data)
     res = FSFILE_Write(file, &bytesWritten, 0,
                        data.data(), data.size(),
                        FS_WRITE_FLUSH);
-    
+
     FSFILE_Close(file);
     FSUSER_CloseArchive(sdmcArchive);
     return R_SUCCEEDED(res) && bytesWritten == data.size();
