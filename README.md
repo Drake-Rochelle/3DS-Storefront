@@ -2,6 +2,9 @@
 3DS Storefront is a homebrew app that allows you to host stores and download files from them straight onto your 3DS!
 
 ### HOW TO MAKE CUSTOM STOREFRONT
+# V0.3
+To make a custom storefront, simply create a folder on your pc with your storefront's files/folders. Then, download the 3DS Storefront Tool from [here](https://github.com/Drake-Rochelle/3DS-Storefront/releases/tag/V0.3) and extract it. Then, run storefront.bat. This will bring you to a google log in page. Log in with whichever account you want the storefront to be under. Then click "Advanced>Go to 3DS Storefront Tool (unsafe)>Continue" (this only showes up because google hasn't published the program). Then, enter in ```storefront create "C:/Path/To/Your/Storefront/Folder"```. It will then begin creating your storefront. After creating your storefront, you can add files to your folder on your pc then run storefront.bat and enter ```storefront push "C:/Path/To/Your/Storefront/Folder"```. This will update the storefront to match your local folder and will only process the new files to save you time. If you want to only add files and not delete any, you can use ```storefront push "C:/Path/To/Your/Storefront/Folder" --add-only```.
+
 # V0.2
 To make a custom storefront, you don't need to host any servers or anything. All you need is a google drive account. To start, go to your desired google drive and create a new folder. You can name it whatever you want.
 
