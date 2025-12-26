@@ -1,5 +1,5 @@
 # 3DS Storefront V0.1
-3DS Storefront is a homebrew app that allows you to host stores and download files from them straight onto your 3DS!
+3DS Storefront is a homebrew app that allows you to host virtual storefronts and download files from them straight onto your 3DS!
 
 ### HOW TO MAKE CUSTOM STOREFRONT
 #### Feel free to [DM me](https://discord.com/users/756198884233183262) your storefront ID so I can add it to the hub.
